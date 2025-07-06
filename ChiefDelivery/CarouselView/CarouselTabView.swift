@@ -9,10 +9,16 @@ import SwiftUI
 
 struct CarouselTabView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView {
+            ForEach(carouselMock) { order in
+                CarouselItemView(carousel: order)
+            }
+        }
+        .frame(height: 180)
+        .tabViewStyle(.page(indexDisplayMode: .always))
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     CarouselTabView()
 }

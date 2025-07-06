@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct StoreItemView: View {
+    let stores: StoreType
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Image(stores.logoImage)
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(25)
+                .frame(width: 50, height: 50)
+            
+            VStack {
+                Text(stores.name)
+                    .font(.subheadline)
+            }
+            
+            Spacer()
+        }
     }
 }
 
-#Preview {
-    StoreItemView()
+#Preview(traits: .sizeThatFitsLayout) {
+    StoreItemView(stores: storesMock[0])
+    .padding()
 }
