@@ -14,41 +14,7 @@ struct StoreDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Image(stores.headerImage)
-                    .resizable()
-                    .scaledToFit()
-                
-                HStack {
-                    Text(stores.name)
-                        .font(.title)
-                        .bold()
-                    
-                    Spacer()
-                    
-                    Image(stores.logoImage)
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(25)
-                        .frame(width: 50, height: 50)
-                }
-                .padding(.vertical, 8)
-                .padding(.horizontal)
-                
-                HStack {
-                    Text(stores.location)
-                        .font(.subheadline)
-                    
-                    Spacer()
-                    
-                    ForEach(1...stores.stars, id: \.self) { _ in
-                        Image(systemName: "star.fill")
-                            .font(.caption)
-                            .foregroundColor(.yellow)
-                    }
-                    
-                }
-                .padding(.vertical, 8)
-                .padding(.horizontal)
+                StoreDetailsHeaderView(stores: stores)
                 
                 Text("Produtos")
                     .font(.title2)

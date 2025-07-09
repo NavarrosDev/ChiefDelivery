@@ -9,8 +9,8 @@ import SwiftUI
 
 struct StoresContainerView: View {
     let title: String = "Lojas"
-    @State private var ratingFilter: Int = 0
-    @State private var distance: Range<Double> = 0..<50
+    @State var ratingFilter: Int = 0
+    @State var distance: Range<Double> = 0..<50
     
     var filteredStores: [StoreType] {
         return storesMock.filter { store in
@@ -25,46 +25,11 @@ struct StoresContainerView: View {
                     .font(.headline)
                 
                 Spacer()
-                
-                Menu("Estrelas") {
-                    
-                    Button {
-                        ratingFilter = 0
-                    } label: {
-                        Text("Limpar filtro")
-                    }
-                    
-                    Divider()
-                    
-                    ForEach(1...5, id: \.self) { i in
-                        Button {
-                            ratingFilter = i
-                        } label: {
-                            Text("\(i) \(i == 1 ? "estrela" : "estrelas") ou mais")
-                        }
-                    }
-                }
-                .foregroundColor(.black)
-                
-                Menu("Distancia") {
-                    
-                    Button {
-                        distance = 0..<50
-                    } label: {
-                        Text("Limpar filtro")
-                    }
-                    
-                    Divider()
-                    
-                    ForEach(Array(stride(from: 0, through: 20, by: 5)), id: \.self) { i in
-                        Button {
-                            distance = i..<(i + 6)
-                        } label: {
-                            Text("De \(Int(i)) até \(Int(i + 5)) km")
-                        }
-                    }
-                }
-                .foregroundColor(.black)
+
+                StoresFilterView(
+                    ratingFilter: $ratingFilter,
+                    distance: $distance
+                )
             }
             
             VStack(alignment: .leading, spacing: 30) {
